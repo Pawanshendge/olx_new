@@ -1,0 +1,31 @@
+     <%= link_to "Back", products_path(@user), class:"btn btn-outline-primary" %>
+     <h3> Product details<hr> </h3>
+<div class="table-responsive-lg">
+<table class="table">
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>User</th>
+
+    </tr> 
+    <tr>
+      <% current_user.cart.shops.each do |shop| %>
+            <td> <%= image_tag shop.product.image, size:122%></td> 
+            <td><%=  shop.product.name %></td>
+            <td><%=  shop.product.price %></td>
+            <td><%= shop.product.description %></td>
+            <td><%= shop.product.user.username %></td>
+            <td><%= link_to "Remove",shop_path(shop) , data: {
+                    method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }  ,class:"btn btn-success" %></td>
+
+           
+       </tr>
+      <% end %>
+   
+</table></div>
+ 
+

@@ -1,0 +1,23 @@
+<!-- 
+<div class="card container shadow p-3 mb-0 bg-white rounded">    
+   <div class="card-body"> --><hr>
+<strong>Comments</strong>
+      <% @product.comments.each do |comment| %>
+         <p>
+            <strong>Plz Comment:</strong>
+            <%= comment.body %>  
+            <%= render partial: "like_comment", locals: {comment: comment} %>
+
+            <%= link_to "Delete Comment", product_comment_path(@product, comment), data: {
+                         method: :delete,
+                         turbo_confirm: "Are you sure?"
+                       } %>    
+
+            <%#= comment.likes.count %> 
+            <%#like = Like.find_by(user_id: current_user.id , likeable_id: comment.id, likeable_type: "Comment")%>
+            <%#= button_to "like", likes_path, params: {like: {likeable_id: comment.id, likeable_type: "Comment", user_id: current_user.id }}, method: :post %>
+         </p> 
+      <% end %><hr><!--
+   </div>
+</div>
+-->

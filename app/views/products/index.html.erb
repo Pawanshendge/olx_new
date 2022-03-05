@@ -1,0 +1,29 @@
+<%#= render partial: "products/search" %>
+
+<h3>All Products <hr></h3>
+<div class="table-responsive-lg">
+    <table class="table">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>User</th>
+        </tr> 
+        <tr>
+            <% @products.each do |product| %>
+                <td> <%= image_tag product.image, size:122 if product.image.attached? %></td> 
+                <td><%=  product.name %></td>
+                <td><%=  product.price %></td>
+                <td><%= product.user.username %></td>
+                <td><%= link_to "show", product, class:"btn btn-success" %>
+                <% if current_user.role == "buyer" %>
+                    <td> <%= button_to 'Add to cart',  cart_add_to_cart_path(product_id: product.id, cart_id: current_user.cart.id), :method => :post, remote: true, class:"btn btn-success" %></td>
+                <% end %>
+                       
+        </tr>    
+            <% end %>
+   </table>
+</div>
+   <% if current_user.role == "seller" %>
+       <br> <center> <%= link_to "New Product", new_product_path,class:"btn btn-primary"  %></center>
+   <% end %>

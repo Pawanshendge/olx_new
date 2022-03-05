@@ -1,0 +1,42 @@
+<%= link_to "Back", products_path(@user), class:"btn btn-outline-primary" %><br>
+<strong>Product Details</strong>   
+<div class="card container shadow  mb-0 bg-white rounded">    
+   <div class="card-body"> 
+      <div class="text-center">
+         <%= image_tag @product.image, style: "width:150px;height:150px;", class: "card-img-top rounded-lg border border-dark m-2 " if @product.image.attached?%>
+         <p> 
+            <strong>Product Name:</strong>
+            <%= @product. name %>
+         </p>
+         <p>
+            <strong>Product Price:</strong>
+            <%= @product.price %>
+         </p>
+         <p>
+            <strong>User Name:</strong>
+            <%= @product.user.username %>
+         </p>          
+         <p>
+            <strong>Product Description:</strong>
+            <%= @product.description %>
+         </p>
+         <% if @product.user == current_user %>
+            <%= link_to "Destroy", product_path(@product), data: { method: :delete, turbo_confirm: "Are you sure?" } , class:"btn btn-success" %>
+            <%= link_to 'Edit', edit_product_path(@product),  class:"btn btn-success" %> &nbsp;
+            <%= link_to 'Back', root_path ,  class:"btn btn-success" %>
+         <% end%>
+         <!--likes-->
+         <%= render partial: "like_product", locals: {product: @product} %>
+         <!--Comments-->
+         <%= render partial: "comment_show", locals: {comment: @comment} %>
+        
+      </div>
+   </div>
+    <%= render :partial => "comment_form"%>
+</div>
+ 
+ 
+
+
+
+
