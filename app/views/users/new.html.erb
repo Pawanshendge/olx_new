@@ -1,11 +1,16 @@
-<h1>Sign Up</h1>
-<%= form_for @user do |f|%>
-  <%= f.label :username%><br>
-  <%= f.text_field :username%><br><br>
+ <div class="bg-image d-flex justify-content-center align-items-center" style=" background-image: url('https://mdbcdn.b-cdn.net/img/new/fluid/nature/015.webp');
+    height: 100vh; ">
+    <h2 style="color:white">
+      <center>Sign Up</center><br>
+      <%= form_for @user do |f|%>
+        <%= f.label :UserName%>
+        <%= f.text_field :username%><br><br>
+        <%= f.label :Role%>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= f.select:role, ["seller","buyer"] %><br><br>
+        <%= f.label :Password%>
+        <%= f.password_field :password%><br><br>
+        <center><%= f.submit %></center>
+    </h2>
+      <%end%>
+</div>
 
- <%= f.select:role, ["seller","buyer"] %>
-
-    <%= f.label :password%><br>
-  <%= f.password_field :password%><br><br>
-  <%= f.submit %>
-<%end%>

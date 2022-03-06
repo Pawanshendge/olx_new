@@ -10,44 +10,47 @@
     </script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <style>
-      .photo-row { text-align: right; }
-
-    </style>
   </head>
-
   <body>
-      
-                    <ul  class="navbar navbar-dark bg-primary" style="color:white">
-                     <a class="navbar-brand" href="#">
-                        <img src="/assets/images.jpeg" width="50" height="50" alt="">
-                      </a> 
-                      <% if current_user.present? %>
-                           <li class="btn btn-primary" ><%= button_to "Log Out", logout_path, method: :delete%></li>        
-                      <% else %>
-                            <li  class="btn btn-primary"><%= button_to "Sign Up", '/users/new', method: :get %></li>&nbsp;&nbsp;
-                            <li  class="btn btn-primary"><%= button_to "Login", '/login', method: :get %></li>   
-                       <% end %> 
-                       <% if logged_in? %>
-                      <h5 style="color:white">Welcome, <%= current_user.username %></h5>&nbsp;&nbsp;
-                    <%end%>
-                    <form class="d-flex">
-                       <%# if current_user.role == "buyer" %>
-                          <%= link_to "Cart", shops_path, class:"btn btn-success" %>
-                       <%# end %> 
-
-                       <!-- <form class="form-inline my-2 my-lg-0">
-                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" method="GET">
-                          <button class="btn btn-success" type="submit">Search</button>
-                        </form> -->
-                     <%= render 'products/search' %>
-
-
-                    </form>
-                    </ul>
-                    
-    <%= yield %>
+    
+        <ul class="navbar navbar-dark bg-primary" style="color:white">
+            <a class="navbar-brand" href="#">
+                <img src="/assets/images.jpeg" width="50" height="50" alt="">
+            </a> 
+            <% if current_user.present? %>
+               <li class="btn btn-primary" ><%= button_to "Log Out", logout_path, method: :delete%></li>        
+            <% else %>
+                <li  class="btn btn-primary"><%= button_to "Sign Up", '/users/new', method: :get %></li>&nbsp;&nbsp;
+                <li  class="btn btn-primary"><%= button_to "Login", '/login', method: :get %></li>   
+            <% end %> 
+            <% if logged_in? %>
+                <h5 style="color:white">Welcome, <%= current_user.username %></h5>&nbsp;&nbsp;
+            <%end%>
+            <form class="d-flex">
+                <% if current_user.present? %>
+                    <%= link_to "Cart", shops_path, class:"btn btn-success" %>&nbsp;&nbsp;&nbsp;&nbsp;
+                <% end %> 
+                <%= render 'products/search' %>
+            </form>
+        </ul><h3 style="color:green">
+            <div> <% if flash[:notice]%> </div>
+            <div> <%= flash[:notice] %></div>
+            <% end %></h3>  
+              
+        <!--     <form  class="form-inline" action="/search" method="GET">
+              <div class="container" class="justify-content-center">
+                <div class="row height d-flex justify-content-center align-items-center">
+                  <table>
+                        <td><input type="/search" class="form-control" placeholder="name" aria-label="Search" 
+                            name="query" method = "GET" class="form-control form-control-lg"> </td>
+                        <td><button class="btn btn-success" type="submit" >Search</button> </td>
+                  </table>
+                </div>
+              </div>
+          </form>    -->  
+       <%= yield %>
+       
+       <br><br><br><br><br><br><br>
     <%= render 'shared/footer' %>
   </body>
 </html>
-

@@ -5,7 +5,8 @@ class LikesController < ApplicationController
   def create
     #byebug
     @like = Like.create(like_params)
-    if @like.save
+    if @like.save 
+      flash[:notice] = "Like has saved"
 		  redirect_to products_path
  	  end
   end
@@ -13,6 +14,7 @@ class LikesController < ApplicationController
     def destroy
      @like = Like.find(params[:id])
      @like.destroy
+     flash[:notice] = "like has destroyed"
      redirect_to products_path
   end
 

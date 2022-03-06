@@ -11,6 +11,7 @@ class ShopsController < ApplicationController
  	def destroy
 	    @shop = Shop.find(params[:id])
 	    @shop.destroy
+	    flash[:notice] = "product has destroyed"
 	    redirect_to @shop
   end
 

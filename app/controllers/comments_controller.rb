@@ -6,12 +6,13 @@ class CommentsController < ApplicationController
   	#byebug
     @product = Product.find(params[:product_id])
     @comment = @product.comments.create(comment_params)
+    flash[:notice] = "Comment has saved"
     redirect_to product_path(@product)
   end
   def destroy
     @product = Product.find params[:product_id]
     @comment = @product.comments.find(params[:id])
-    @comment.destroy
+    @comment.destroyflash[:notice] = "Comment has destroyed"
     redirect_to product_path(@product)
   end
 
