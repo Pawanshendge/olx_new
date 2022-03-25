@@ -3,10 +3,17 @@
     <h2 style="color:white">
       <center>Sign Up</center><br>
       <%= form_for @user do |f|%>
+
         <%= f.label :UserName%>
         <%= f.text_field :username%><br><br>
+
+        <%= f.label :email%>
+        <%= f.email_field :email%><br><br>
+      
+
         <%= f.label :Role%>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= f.select:role, ["seller","buyer"] %><br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= f.select:role, ["seller","buyer"] %>
+        <br><br>
         <%= f.label :Password%>
         <%= f.password_field :password%><br><br>
         <center><%= f.submit %></center>

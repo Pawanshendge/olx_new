@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
 
 	def create
 		@product = current_user.products.build(product_params)
+         UserMailer.with(user: current_user, product: @product).product.deliver_now
 		if @product.save
 			flash[:notice] = "product has saved"
 			redirect_to @product
